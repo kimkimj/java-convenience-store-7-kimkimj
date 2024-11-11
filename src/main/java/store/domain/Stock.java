@@ -23,8 +23,8 @@ public class Stock {
         return quantity;
     }
 
-    public boolean hasPromotion() {
-        return promotion != null;
+    public int getPrice() {
+        return price;
     }
 
     public Promotion getPromotion() {
@@ -35,13 +35,23 @@ public class Stock {
         return promotionQuantity;
     }
 
-    public int subtractQuantity(int number) {
-        quantity -= number;
-        return quantity;
+    public boolean hasPromotion() {
+        return promotion != null;
+    }
+
+    public void subtractFromStock(int quantity) {
+        if (this.quantity - quantity < 0) {
+            throw new IllegalArgumentException();
+        }
+        this.quantity -= quantity;
+    }
+
+    public void subtractFromPromotionQuantity(int quantity) {
+        promotionQuantity -= quantity;
     }
 
     public void printStock() {
-        // 프로모션 재고
+        // 프로모션 재품 재고
         if (promotion != null) {
             System.out.printf("- %s %,d원 %d개 %s%n", productName, price, promotionQuantity, promotion.getName());
         }
