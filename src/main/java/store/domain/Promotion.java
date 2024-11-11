@@ -1,5 +1,7 @@
 package store.domain;
 
+import camp.nextstep.edu.missionutils.DateTimes;
+
 import java.time.LocalDate;
 
 public class Promotion {
@@ -27,5 +29,9 @@ public class Promotion {
 
     public int getGivenForFree() {
         return givenForFree;
+    }
+
+    public boolean isValid() {
+        return DateTimes.now().isAfter(startDate.atStartOfDay()) && DateTimes.now().isBefore(endDate.atTime(23, 59, 59));
     }
 }
